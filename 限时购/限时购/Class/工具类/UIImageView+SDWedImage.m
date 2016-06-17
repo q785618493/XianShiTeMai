@@ -29,6 +29,7 @@
               success:(DownloadSuccessBlock)success
               failure:(DownloadFailureBlock)failure
              received:(DownloadProgressBlock)progress {
+    
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     
     [manager downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageLowPriority | SDWebImageRetryFailed  progress:^(NSInteger receivedSize, NSInteger expectedSize) {

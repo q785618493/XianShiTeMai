@@ -26,7 +26,7 @@ typedef void(^HederBtnActionBlock)();
 + (instancetype)showMeHeaderViewAddWidth:(CGFloat)width
                                    height:(CGFloat)height;
 
-/** 隐藏移除 登录 和 注册 的视图方法*/
+/** 隐藏移除 HeaderView 的视图方法*/
 - (void)hiddenDeleteView;
 
 /** 用户登录完成后的顶部视图*/

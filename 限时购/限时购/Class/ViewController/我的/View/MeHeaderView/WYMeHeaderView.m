@@ -131,13 +131,6 @@
     [topImageView setBackgroundColor:RGB(103, 207, 234)];
     [headerView addSubview:topImageView];
     
-    /** 用户按钮*/
-//    UIButton *userBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-//    [userBtn setFrame:(CGRectMake(25, 12, 100, 100))];
-//    [userBtn.layer setMasksToBounds:YES];
-//    [userBtn.layer setCornerRadius:50];
-//    [userBtn setImage:[UIImage imageNamed:@"图标"] forState:(UIControlStateNormal)];
-//    [userBtn addTarget:self action:@selector(btnTouchActionUser:) forControlEvents:(UIControlEventTouchUpInside)];
     [topImageView addSubview:headerView.userBtn];
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:(CGRectMake(150, 33, width - 175, 20))];

@@ -78,9 +78,7 @@
     
     [self.verifyTextField becomeFirstResponder];
     
-    /**
-     KVO 监听倒计时按钮title的变化
-     */
+    /** KVO 监听倒计时按钮title的变化    */
     [self.testBtn addObserver:self forKeyPath:[NSString stringWithFormat:@"btnTitleType"] options:NSKeyValueObservingOptionNew context:nil];
     
 }
@@ -93,7 +91,6 @@
     if (self.testBtn.btnTitleType == TestBtnTitleTypeSpecial) {
         
         [self.againBtn setEnabled:YES];
-        self.againBtn.selected = !self.againBtn.selected;
     }
 }
 
@@ -109,7 +106,7 @@
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:(CGRectMake(15, 74, VIEW_WIDTH - 30, 20))];
     
-    NSAttributedString *infoAttrStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"验证码已发送到"] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:RGB(165, 165, 165)}];
+    NSAttributedString *infoAttrStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"验证码已经发送到"] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:RGB(165, 165, 165)}];
     
     NSAttributedString *phoneAttrStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"+86 %@",self.phoneNumber] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:RGB(0, 187, 239)}];
     
@@ -158,25 +155,17 @@
     self.againBtn = againBtn;
 }
 
-/**
- 获取验证码的网络请求
- */
+/** 获取验证码的网络请求 */
 - (void)httpPostSecuritycode {
     
-//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_phoneNumber,@"MemberId", nil];
-    
-    NSLog(@"---------%@---",self.phoneNumber);
-    
-    NSDictionary *dic = @{@"MemberId":self.phoneNumber};
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_phoneNumber,@"MemberId", nil];
     
     WS(weakSelf);
     [self POSTHttpRequestUrl:[NSString stringWithFormat:@"http://123.57.141.249:8080/beautalk/appMember/createCode.do"] dic:dic successBlock:^(id JSON) {
         
-        NSDictionary *dataDic = JSON;
+        NSDictionary *dataDic = (NSDictionary *)JSON;
         
-        NSLog(@"=====Dic==%@",dataDic);
-        
-        if ([dataDic[@"result"] isEqual:@"success"]) {
+        if ([dataDic[@"result"] isEqual:[NSString stringWithFormat:@"success"]]) {
             
             [GCDCountdownTime GCDTimeMethod:weakSelf.testBtn];
             
@@ -219,9 +208,7 @@
     }
 }
 
-/**
- 注册的网络请求
- */
+/** 注册的网络请求 */
 - (void)httpGetLandingMethod {
     
     WS(weakSelf);
@@ -230,9 +217,7 @@
     
     [self GETHttpRequestUrl:[NSString stringWithFormat:@"http://123.57.141.249:8080/beautalk/appMember/appRegistration.do"] dic:dic successBlock:^(id JSON) {
         
-        NSDictionary *dataDic = JSON;
-        
-        NSLog(@"=====Dic==%@",dataDic);
+        NSDictionary *dataDic = (NSDictionary *)JSON;
         
         if ([dataDic[@"result"] isEqual:@"success"]) {
             
@@ -247,9 +232,7 @@
     }];
 }
 
-/**
- 重新发送验证码按钮点击事件
- */
+/** 重新发送验证码按钮点击事件 */
 - (void)btnTouchActionAgain:(UIButton *)againBtn {
     
     againBtn.selected = !againBtn.selected;

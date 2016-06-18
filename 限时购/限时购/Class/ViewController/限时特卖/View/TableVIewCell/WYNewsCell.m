@@ -11,44 +11,28 @@
 
 @interface WYNewsCell ()
 
-/**
- 商品图片
- */
+/** 商品图片 */
 @property (strong, nonatomic) UIImageView *commodityImage;
 
-/**
- cell 底部分割线
- */
+/** cell 底部分割线 */
 @property (strong, nonatomic) UILabel *wireLabel;
 
-/**
- 商品标题
- */
+/** 商品标题 */
 @property (strong, nonatomic) UILabel *titleLabel;
 
-/**
- 商品简介
- */
+/** 商品简介 */
 @property (strong, nonatomic) UILabel *infoLabel;
 
-/**
- 商品打折价格
- */
+/** 商品打折价格 */
 @property (strong, nonatomic) UILabel *ciscountLabel;
 
-/**
- 商品原价格
- */
+/** 商品原价格 */
 @property (strong, nonatomic) UILabel *priceLabel;
 
-/**
- 商品原价格的划线
- */
+/** 商品原价格的划线 */
 @property (strong, nonatomic) UILabel *lineLabel;
 
-/**
- 添加到购物车按钮
- */
+/** 添加到购物车按钮 */
 @property (strong, nonatomic) UIButton *shoppingBtn;
 
 @end
@@ -76,9 +60,7 @@
     return self;
 }
 
-/**
- 重写 dataModel的 set 方法
- */
+/** 重写 dataModel的 set 方法 */
 - (void)setDataModel:(WYNewsModel *)dataModel {
     _dataModel = dataModel;
     
@@ -94,9 +76,7 @@
     [_shoppingBtn setTag:cellTag + 1];
 }
 
-/**
- 控件的约束方法
- */
+/** 控件的约束方法 */
 - (void)newsCellMasonry {
     WS(weakSelf);
     [_wireLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -160,13 +140,11 @@
     return _shoppingBtn;
 }
 
-/**
- 购物车按钮 shoppingBtn点击事件
- */
+/** 购物车按钮 shoppingBtn点击事件 */
 - (void)btnTouchActionShopping:(UIButton *)shopping {
     
     if (_cellBtnTag) {
-        _cellBtnTag(shopping.tag - 1);
+        _cellBtnTag(self.cellTag);
     }
 }
 

@@ -188,8 +188,6 @@
         
     } else if ([self.userTextField.text checkTel] && self.codeTextField.text.length >= 6) {
         
-        [self.view makeToast:[NSString stringWithFormat:@"正在登录ing..."] duration:1.5 position:[NSString stringWithFormat:@"center"]];
-        
         WYVerifyPhoneViewController *verifyVC = [[WYVerifyPhoneViewController alloc] init];
         verifyVC.phoneNumber = self.userTextField.text;
         verifyVC.codeText = [self.codeTextField.text trimString];

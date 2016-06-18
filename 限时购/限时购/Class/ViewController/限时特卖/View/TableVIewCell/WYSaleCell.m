@@ -11,14 +11,10 @@
 
 @interface WYSaleCell ()
 
-/**
- 商品图片
- */
+/** 商品图片 */
 @property (strong, nonatomic) UIImageView *commodityImage;
 
-/**
- 
- */
+/** 中心位置图片 */
 @property (strong, nonatomic) UIImageView *centerImage;
 
 
@@ -59,10 +55,7 @@
     WS(weakSelf);
     
     [_commodityImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(weakSelf.mas_top);
-        make.left.mas_equalTo(weakSelf.mas_left);
-        make.right.mas_equalTo(weakSelf.mas_right);
-        make.height.mas_equalTo(165);
+        make.edges.equalTo(weakSelf).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
     
     [_centerImage mas_makeConstraints:^(MASConstraintMaker *make) {

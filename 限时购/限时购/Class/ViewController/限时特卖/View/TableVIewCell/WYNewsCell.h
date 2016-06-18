@@ -11,19 +11,13 @@
 
 @interface WYNewsCell : WYBaseTableCell
 
-/**
- 提供数据的接口
- */
+/** 提供数据的接口 */
 @property (strong, nonatomic) WYNewsModel *dataModel;
 
-/**
- cell 上按钮点击事件的回调 block
- */
+/** cell 上按钮点击事件的回调 block */
 @property (copy, nonatomic) CellBtnBlock cellBtnTag;
 
-/**
- 保存cell行数
- */
+/** 保存cell行数 */
 @property (assign, nonatomic) NSInteger cellTag;
 
 @end

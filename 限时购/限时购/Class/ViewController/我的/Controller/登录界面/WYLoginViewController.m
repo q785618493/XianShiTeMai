@@ -265,9 +265,6 @@
                 [MBProgressHUD hideHUD];
             });
         }
-            
-            
-            
         default:
             break;
     }
@@ -278,9 +275,7 @@
     
 }
 
-/**
- 登录的网络请求
- */
+/** 登录的网络请求 */
 - (void)httpLoginGET {
     
     WS(weakSelf);
@@ -302,6 +297,7 @@
             [weakSelf.view makeToast:[NSString stringWithFormat:@"登录成功"] duration:1.6 position:[NSString stringWithFormat:@"center"]];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
                 NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:userDic[@"MemberName"],@"name",userDic[@"MemberLvl"],@"member", nil];
                 
                 [weakSelf judgeDelegateActionUserDic:dic];
@@ -309,14 +305,9 @@
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             });
            
-            
-            
         } else {
-            
             [weakSelf.view makeToast:[NSString stringWithFormat:@"账号或密码错误"] duration:1.6 position:[NSString stringWithFormat:@"center"]];
         }
-        
-        
         
     } errorBlock:^(NSError *error) {
         
@@ -337,7 +328,6 @@
         WYMeModel *modelMoney = [[WYMeModel alloc] init];
         modelMoney.title = [NSString stringWithFormat:@"邀请好友,立刻赚钱"];
         modelMoney.image = [NSString stringWithFormat:@"我的界面邀请好友图标"];
-//        modelMoney.isStatus = YES;
         
         [self.delegate loginView:self judgeStatus:YES couponModel:modelCoupon moneyModel:modelMoney userDic:userDic];
     }

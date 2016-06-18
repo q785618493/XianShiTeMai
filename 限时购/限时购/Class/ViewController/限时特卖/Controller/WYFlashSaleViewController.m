@@ -245,28 +245,20 @@ static NSString *versionKey = @"CFBundleShortVersionString";
     });
 }
 
-/**
- 检查登录状态
- */
+/** 检查登录状态 */
 - (void)checkLoginStatus {
     
-    /**
-     首页广告位轮播视图的网络请求
-     */
+    /**     首页广告位轮播视图的网络请求     */
     [self httpPostTopRoll];
     
-    /**
-     首页加载新品购的网络请求
-     */
+    /**     首页加载新品购的网络请求     */
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self httpPostNews];
        
     });
 }
 
-/**
- 首页广告位轮播视图的网络请求
- */
+/** 首页广告位轮播视图的网络请求 */
 - (void)httpPostTopRoll {
     
     WS(weakSelf);

@@ -65,7 +65,7 @@
                 [countdownBtn setAttributedTitle:muAttrStr forState:(UIControlStateNormal)];
                 [countdownBtn setBtnTitleType:(TestBtnTitleTypeHave)];
             });
-            timeout--;
+            timeout --;
         }
     });
     dispatch_resume(_timer);

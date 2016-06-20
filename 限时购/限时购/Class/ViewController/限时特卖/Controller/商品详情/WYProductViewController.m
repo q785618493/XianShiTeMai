@@ -117,9 +117,7 @@
     
 }
 
-/**
- 添加底部购物车和立即购买按钮的 view
- */
+/** 添加底部购物车和立即购买按钮的 view */
 - (void)bottomAddView {
     
     UIView *bottomView = [[UIView alloc] initWithFrame:(CGRectMake(0, VIEW_HEIGHT - 44, VIEW_WIDTH, 44))];
@@ -130,18 +128,14 @@
     [lineLabel setBackgroundColor:RGB(213, 213, 213)];
     [bottomView addSubview:lineLabel];
     
-    /**
-     购物车按钮
-     */
+    /**     购物车按钮     */
     UIButton *shoppingBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [shoppingBtn setFrame:(CGRectMake(15, 9, 26, 26))];
     [shoppingBtn setImage:[UIImage imageNamed:@"详情界面购物车按钮"] forState:(UIControlStateNormal)];
     [shoppingBtn addTarget:self action:@selector(btnTouchActionShopping) forControlEvents:(UIControlEventTouchUpInside)];
     [bottomView addSubview:shoppingBtn];
     
-    /**
-     加入购物车按钮
-     */
+    /**     加入购物车按钮     */
     CGFloat width = (VIEW_WIDTH - 105) * 0.5;
     
     UIButton *addCartBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -150,9 +144,7 @@
     [addCartBtn addTarget:self action:@selector(btnTouchActionAddCart) forControlEvents:(UIControlEventTouchUpInside)];
     [bottomView addSubview:addCartBtn];
 
-    /**
-     立即购买按钮
-     */
+    /**     立即购买按钮     */
     UIButton *buyNowBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [buyNowBtn setFrame:(CGRectMake(VIEW_WIDTH - width - 15, 5, width, 35))];
     [buyNowBtn setImage:[UIImage imageNamed:@"详情界面立即购买按钮"] forState:(UIControlStateNormal)];
@@ -160,42 +152,30 @@
     [bottomView addSubview:buyNowBtn];
 }
 
-/**
- 购物车按钮点击事件
- */
+/** 购物车按钮点击事件 */
 - (void)btnTouchActionShopping {
     
 }
 
-/**
- 加入购物车按钮点击事件
- */
+/** 加入购物车按钮点击事件 */
 - (void)btnTouchActionAddCart {
     
 }
 
-/**
- 立即购买按钮点击事件
- */
+/** 立即购买按钮点击事件 */
 - (void)btnTouchActionBuyNow {
     
 }
 
-/**
- 添加导航条上的三个按钮
- */
+/** 添加导航条上的三个按钮 */
 - (void)navigationAddThreeBarBtnItem {
     
-    /**
-     左边返回按钮
-     */
+    /**     左边返回按钮     */
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithModeImageName:@"详情界面返回按钮"] style:(UIBarButtonItemStylePlain) target:self action:@selector(barItemLeft)];
     [self.navigationItem setLeftBarButtonItem:leftItem];
     
     
-    /**
-     右边两个按钮
-     */
+    /**     右边两个按钮     */
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithModeImageName:@"详情界面收藏按钮"] style:(UIBarButtonItemStylePlain) target:self action:@selector(barItemCollect)];
     
     UIBarButtonItem *_rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithModeImageName:@"详情界面转发按钮"] style:(UIBarButtonItemStylePlain) target:self action:@selector(barItemRelay)];
@@ -205,30 +185,22 @@
     [self.navigationItem setRightBarButtonItems:itemsArray];
 }
 
-/**
- 左边返回按钮点击事件
- */
+/** 左边返回按钮点击事件 */
 - (void)barItemLeft {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-/**
- 右边收藏按钮点击事件
- */
+/** 右边收藏按钮点击事件 */
 - (void)barItemCollect {
     
 }
 
-/**
- 右边转发按钮点击事件
- */
+/** 右边转发按钮点击事件 */
 - (void)barItemRelay {
     
 }
 
-/**
- 商品所有图片列表网络请求
- */
+/** 商品所有图片列表网络请求 */
 - (void)httpPostAllGoods {
     
     WS(weakSelf);
@@ -290,9 +262,7 @@
             /** scrollView 顶部图片轮播视图的数据*/
             weakSelf.topRollView.arrayImages = imageArray;
             
-            /**
-            中部第3块的 商品详情图片信息的 WYImageDetailsView
-             */
+            /**            中部第3块的 商品详情图片信息的 WYImageDetailsView            */
             [weakSelf imageAddViewPhotoArray:detailsImageArray height:[detailsHeightArray[0] floatValue]];
             
         }
@@ -302,9 +272,7 @@
     }];
 }
 
-/**
- 商品详情列表网络请求
- */
+/** 商品详情列表网络请求 */
 - (void)httpPostGoodsDetails {
     WS(weakSelf);
     
@@ -339,14 +307,10 @@
             
             WYAllDetailsModel *model = [[WYAllDetailsModel alloc] initWithDictionary:dataDic];
             
-            /**
-             添加轮播视图上的购买人数按钮
-             */
+            /**             添加轮播视图上的购买人数按钮             */
             [weakSelf addRollViewUpBuyCount:model.buyCount];
             
-            /**
-             添加轮播视图下面的 centerView
-             */
+            /**             添加轮播视图下面的 centerView             */
             [weakSelf rollViewBottomAddCenterViewModel:model];
             
         }
@@ -356,9 +320,7 @@
     }];
 }
 
-/**
- 商品评分部分网络请求
- */
+/** 商品评分部分网络请求 */
 - (void)httpPostGoodsScore {
     WS(weakSelf);
     
@@ -384,9 +346,7 @@
     }];
 }
 
-/**
- 商品评论部分网络请求(空的)
- */
+/** 商品评论部分网络请求(空的) */
 - (void)httpPostComment {
 //    WS(weakSelf);
     
@@ -409,9 +369,7 @@
     
 }
 
-/**
- scrollView 顶部图片轮播视图
- */
+/** scrollView 顶部图片轮播视图 */
 - (void)addUpScrollView {
     
     TopRollView *rollView = [[TopRollView alloc] initWithFrame:(CGRectMake(0, 0, VIEW_WIDTH, VIEW_WIDTH))];
@@ -419,9 +377,7 @@
     self.topRollView = rollView;
 }
 
-/**
- 添加轮播视图上的购买人数按钮
- */
+/** 添加轮播视图上的购买人数按钮 */
 - (void)addRollViewUpBuyCount:(NSString *)buyCount {
     
     UIButton *buyBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -434,9 +390,7 @@
     [self.topRollView addSubview:buyBtn];
 }
 
-/**
- 中部第1块的 价格,品牌,国家等信息的 WYCenterView
- */
+/** 中部第1块的 价格,品牌,国家等信息的 WYCenterView */
 - (void)rollViewBottomAddCenterViewModel:(WYAllDetailsModel *)mode {
     
     WYCenterView *centerView = [[WYCenterView alloc] initWithFrame:(CGRectMake(0, VIEW_WIDTH, VIEW_WIDTH, 251)) model:mode];
@@ -458,9 +412,7 @@
     };
 }
 
-/**
- 中部第2块的 商品详情文字信息的 WYProductTableView
- */
+/** 中部第2块的 商品详情文字信息的 WYProductTableView */
 - (void)twoCenterAddTableViewDataArray:(NSArray *)dataArray {
     
     WYProductTableView *tableView = [[WYProductTableView alloc] initWithFrame:(CGRectMake(0, VIEW_WIDTH + 251, VIEW_WIDTH, 358)) style:(UITableViewStyleGrouped)];
@@ -470,9 +422,7 @@
     
 }
 
-/**
- 中部第3块的 商品详情图片信息的 WYImageDetailsView
- */
+/** 中部第3块的 商品详情图片信息的 WYImageDetailsView */
 - (void)imageAddViewPhotoArray:(NSArray *)photoArray height:(CGFloat)height {
     
     CGFloat scale = height / 667.0 < 667 / height ? height / 667.0 : 667 / height;
@@ -482,9 +432,7 @@
     self.imageDetailsView = imageView;
 }
 
-/**
- 底部商品评分部分的视图
- */
+/** 底部商品评分部分的视图 */
 - (void)goodsScoreBottomViewDataArray:(NSArray *)dataArray {
     
     WYGoodsScoreView *scoreView = [[WYGoodsScoreView alloc] initWithFrame:(CGRectMake(0, CGRectGetMaxY(self.imageDetailsView.frame), VIEW_WIDTH, 130)) dataArray:dataArray];

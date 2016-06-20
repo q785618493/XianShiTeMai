@@ -10,20 +10,13 @@
 
 @interface WYProductViewController : WYBaseViewController
 
-/**
- 接收商品的 ID,做网络请求参数,得到该商品的信息
- */
+/** 接收商品的 ID,做网络请求参数,得到该商品的信息 */
 @property (copy, nonatomic) NSString *goodsID;
 
-/**
- 判断是执行否网络请求
- */
-@property (assign, nonatomic, getter = isStart) BOOL start;
-
-
-/**
- 国旗图片的网络路径
- */
+/** 国旗图片的网络路径 */
 @property (copy, nonatomic) NSString *countryImageUrl;
+
+/** 判断是执行否网络请求 */
+@property (assign, nonatomic, getter = isStart) BOOL start;
 
 @end

@@ -86,9 +86,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/**
- 分类区接口网络请求
- */
+/** 分类区接口网络请求 */
 - (void)httpGetClassfy {
     
     [self GETHttpRequestUrl:[NSString stringWithFormat:@"http://123.57.141.249:8080/beautalk/appBrandareatype/findBrandareatype.do"] dic:nil successBlock:^(id JSON) {
@@ -114,9 +112,7 @@
 
 }
 
-/**
- 面部专区的网络请求
- */
+/** 面部专区的网络请求 */
 - (void)httpGetFace {
     
     [self GETHttpRequestUrl:[NSString stringWithFormat:@"http://123.57.141.249:8080/beautalk/appBrandarea/asianBrand.do"] dic:nil successBlock:^(id JSON) {
@@ -142,9 +138,7 @@
 
 }
 
-/**
- 身体专区的网络请求
- */
+/** 身体专区的网络请求 */
 - (void)httpGetBody {
     
     [self GETHttpRequestUrl:[NSString stringWithFormat:@"http://123.57.141.249:8080/beautalk/appBrandarea/europeanBrand.do"] dic:nil successBlock:^(id JSON) {
@@ -169,9 +163,7 @@
     
 }
 
-/**
- 品牌专区的网络请求
- */
+/** 品牌专区的网络请求 */
 - (void)httpPostBrand {
     WS(weakSelf);
     

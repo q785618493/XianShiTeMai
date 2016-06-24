@@ -202,9 +202,12 @@
         
         [self.view makeToast:[NSString stringWithFormat:@"验证码不能为空"] duration:1.5 position:[NSString stringWithFormat:@"center"]];
         
-    } else {
+    } else if (self.verifyTextField.text.length == 6) {
         
         [self httpGetLandingMethod];
+    }
+    else {
+        [self.verifyTextField makeToast:[NSString stringWithFormat:@"验证码错误"] duration:1.5 position:[NSString stringWithFormat:@"center"]];
     }
 }
 
@@ -223,6 +226,9 @@
             
             [weakSelf.view makeToast:[NSString stringWithFormat:@"注册成功"] duration:1.5 position:[NSString stringWithFormat:@"center"]];
             
+        }
+        else {
+            [weakSelf.view makeToast:[NSString stringWithFormat:@"注册失败"] duration:1.5 position:[NSString stringWithFormat:@"center"]];
         }
         
     } errorBlock:^(NSError *error) {

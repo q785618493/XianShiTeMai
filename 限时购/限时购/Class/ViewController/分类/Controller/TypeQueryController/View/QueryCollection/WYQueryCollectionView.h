@@ -10,11 +10,8 @@
 
 @interface WYQueryCollectionView : WYBaseCollecrion
 
-/**
- 给外部传输数据的接口
- */
+/** 给外部传输数据的接口 */
 @property (strong, nonatomic) NSArray *dataArray;
-
 
 
 @end

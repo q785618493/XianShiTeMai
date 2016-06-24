@@ -61,7 +61,7 @@ static NSString *IDColl = @"collID";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(157, 236);
+    return CGSizeMake(157, 256);
 }
 
 

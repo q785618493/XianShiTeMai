@@ -11,9 +11,7 @@
 
 @interface WYQueryCell : WYBaseCollectionCell
 
-/**
- 接收数据的 model
- */
+/** 接收数据的 model */
 @property (strong, nonatomic) WYQueryModel *model;
 
 @end

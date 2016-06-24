@@ -202,10 +202,12 @@
         
         [self.view makeToast:[NSString stringWithFormat:@"密码不能为空"] duration:1.6 position:[NSString stringWithFormat:@"center"]];
         
-    } else {
+    } else if ([self.userTextField.text checkTel] && self.codeTextField.text.length > 5 ) {
         
         [self httpLoginGET];
         
+    } else {
+        [self.view makeToast:[NSString stringWithFormat:@"账号或者密码错误"] duration:1.6 position:[NSString stringWithFormat:@"centern"]];
     }
     
 //    [MBProgressHUD showMessage:@"正在登录ing..."];
@@ -292,7 +294,7 @@
 //        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 //        NSLog(@"-------Dic==%@",string);
         
-        if (0 == [userDic[@"result"] integerValue]) {
+        if ([userDic[@"ErrorMessage"] isEqualToString:[NSString stringWithFormat:@"登陆成功"]]) {
             
             [weakSelf.view makeToast:[NSString stringWithFormat:@"登录成功"] duration:1.6 position:[NSString stringWithFormat:@"center"]];
             

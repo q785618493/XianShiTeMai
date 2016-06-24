@@ -186,11 +186,11 @@
         
         [self.view makeToast:[NSString stringWithFormat:@"密码不能为空"] duration:1.5 position:[NSString stringWithFormat:@"center"]];
         
-    } else if ([self.userTextField.text checkTel] && self.codeTextField.text.length >= 6) {
+    } else if ([self.userTextField.text checkTel] && self.codeTextField.text.length > 5) {
         
         WYVerifyPhoneViewController *verifyVC = [[WYVerifyPhoneViewController alloc] init];
         verifyVC.phoneNumber = self.userTextField.text;
-        verifyVC.codeText = [self.codeTextField.text trimString];
+        verifyVC.codeText = self.codeTextField.text;
         [self.navigationController pushViewController:verifyVC animated:YES];
         
 //        WS(weakSelf);

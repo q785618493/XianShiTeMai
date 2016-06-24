@@ -351,6 +351,7 @@ static NSString *versionKey = @"CFBundleShortVersionString";
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.flashTable reloadData];
+                [weakSelf.flashTable setHidden:NO];
             });
             
         }
@@ -382,6 +383,7 @@ static NSString *versionKey = @"CFBundleShortVersionString";
     
     __block WYFlashTable *tableView = [[WYFlashTable alloc] initWithFrame:(CGRectMake(0, 64, VIEW_WIDTH, VIEW_HEIGHT - 49 - 64)) style:(UITableViewStyleGrouped)];
     [tableView setTableHeaderView:rollView];
+    [tableView setHidden:YES];
     [self.view addSubview:tableView];
     self.flashTable = tableView;
     

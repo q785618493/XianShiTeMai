@@ -15,66 +15,73 @@
 
 @interface WYTypeQueryViewController ()<UIScrollViewDelegate>
 
-/**
- 背景的滚动视图
- */
+/** 背景的滚动视图 */
 @property (weak, nonatomic) UIScrollView *contextScroll;
 
-/**
- 加载展示"热门"商品视图 WYQueryCollectionView
- */
+/** 加载展示"热门"商品视图 WYQueryCollectionView */
 @property (weak, nonatomic) WYQueryCollectionView *collectionHostView;
 
-/**
- 加载展示"价格"商品视图 WYQueryCollectionView
- */
+/** 加载展示"价格"商品视图 WYQueryCollectionView */
 @property (weak, nonatomic) WYQueryCollectionView *collectionPriceView;
 
-/**
- 加载展示"好评"商品视图 WYQueryCollectionView
- */
+/** 加载展示"好评"商品视图 WYQueryCollectionView */
 @property (weak, nonatomic) WYQueryCollectionView *collectionScoreView;
 
-/**
- 加载展示"新品"商品视图 WYQueryCollectionView
- */
+/** 加载展示"新品"商品视图 WYQueryCollectionView */
 @property (weak, nonatomic) WYQueryCollectionView *collectionTimeView;
 
-/**
- 4个排序按钮的父视图
- */
+/** 4个排序按钮的父视图 */
 @property (weak, nonatomic) UIView *fourBtnView;
 
-/**
- 按钮选中状态底部的展示线
- */
+/** 按钮选中状态底部的展示线 */
 @property (weak, nonatomic) UILabel *wireLabel;
 
 @property (assign, nonatomic) CGFloat btn_Width;
 
-/**
- 热门排序按钮商品信息存储的数组
- */
+/** 热门排序按钮商品信息存储的数组 */
 @property (strong, nonatomic) NSMutableArray *hostArray;
 
-/**
- 价格排序按钮商品信息存储的数组
- */
+/** 价格排序按钮商品信息存储的数组 */
 @property (strong, nonatomic) NSMutableArray *priceArray;
 
-/**
- 好评排序按钮商品信息存储的数组
- */
+/** 好评排序按钮商品信息存储的数组 */
 @property (strong, nonatomic) NSMutableArray *scoreArray;
 
-/**
- 新品排序按钮商品信息存储的数组
- */
+/** 新品排序按钮商品信息存储的数组 */
 @property (strong, nonatomic) NSMutableArray *timeArray;
 
 @end
 
 @implementation WYTypeQueryViewController
+
+/** 懒加载 */
+- (NSMutableArray *)hostArray {
+    if (!_hostArray) {
+        _hostArray = [NSMutableArray array];
+    }
+    return _hostArray;
+}
+
+- (NSMutableArray *)priceArray {
+    if (!_priceArray) {
+        _priceArray = [NSMutableArray array];
+    }
+    return _priceArray;
+}
+
+- (NSMutableArray *)scoreArray {
+    if (!_scoreArray) {
+        _scoreArray = [NSMutableArray array];
+    }
+    return _scoreArray;
+}
+
+- (NSMutableArray *)timeArray {
+    if (!_timeArray) {
+        _timeArray = [NSMutableArray array];
+    }
+    return _timeArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -83,11 +90,6 @@
     self.title = _name;
     
     _btn_Width = self.view.frame.size.width * 0.25;
-    
-    self.hostArray = [NSMutableArray array];
-    self.priceArray = [NSMutableArray array];
-    self.scoreArray = [NSMutableArray array];
-    self.timeArray = [NSMutableArray array];
     
     /**
      背景的滚动视图
@@ -118,9 +120,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/**
- 背景的滚动视图
- */
+/** 背景的滚动视图 */
 - (void)backgroundAddScrollView {
     
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:(CGRectMake(0, 104, VIEW_WIDTH, VIEW_HEIGHT - 104))];
@@ -135,9 +135,7 @@
     self.contextScroll = scrollView;
 }
 
-/**
- 添加排序的4个按钮
- */
+/** 添加排序的4个按钮 */
 - (void)topAddFourBtnView {
     
     UIView *topView = [[UIView alloc] initWithFrame:(CGRectMake(0, 64, VIEW_WIDTH, 40))];
@@ -171,9 +169,7 @@
     
 }
 
-/**
- 4个排序按钮的点击事件
- */
+/** 4个排序按钮的点击事件 */
 - (void)btnTouchActionRank:(UIButton *)rankBtn {
     
     rankBtn.selected = YES;
@@ -201,7 +197,7 @@
             break;
         case 1: {
             
-            if (self.priceArray.count < 2) {
+            if (self.priceArray.count < 1) {
                 [self httpPostBrandListOrderName:@"price" OrderType:@"DESC" isBag:2];
             }
             [self.contextScroll setContentOffset:(CGPointMake(VIEW_WIDTH , 0)) animated:YES];
@@ -226,15 +222,12 @@
             [self.contextScroll setContentOffset:(CGPointMake(VIEW_WIDTH * 3, 0)) animated:YES];
             
         }
-            
         default:
             break;
     }
 }
 
-/**
- 根据品牌跳转至商品列表的 网络请求
- */
+/** 根据品牌跳转至商品列表的 网络请求 */
 - (void)httpPostBrandListOrderName:(NSString *)OrderName OrderType:(NSString *)OrderType isBag:(NSInteger)isBag {
     
     NSDictionary *requestDic = @{@"ShopId":self.typeID,
@@ -272,9 +265,6 @@
                     case 4: {
                         [weakSelf.timeArray addObject:model];
                     }
-                        
-                        break;
-                        
                     default:
                         break;
                 }
@@ -296,14 +286,14 @@
                 }
                     break;
                 case 3: {
-                    weakSelf.collectionScoreView.dataArray = weakSelf.priceArray;
+                    weakSelf.collectionScoreView.dataArray = weakSelf.scoreArray;
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [weakSelf.collectionScoreView reloadData];
                     });
                 }
                     break;
                 case 4: {
-                    weakSelf.collectionTimeView.dataArray = weakSelf.priceArray;
+                    weakSelf.collectionTimeView.dataArray = weakSelf.timeArray;
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [weakSelf.collectionTimeView reloadData];
                     });

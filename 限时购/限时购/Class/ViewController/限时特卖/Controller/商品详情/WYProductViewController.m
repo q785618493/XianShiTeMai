@@ -354,10 +354,7 @@
         NSArray *dataArray = JSON;
         
         NSLog(@"=====json==%@",JSON);
-        
-//        NSData *data = [NSJSONSerialization dataWithJSONObject:JSON options:(NSJSONWritingPrettyPrinted) error:nil];
-//        NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        NSLog(@"------%@",json);
+
         
         if (dataArray.count > 0) {
             

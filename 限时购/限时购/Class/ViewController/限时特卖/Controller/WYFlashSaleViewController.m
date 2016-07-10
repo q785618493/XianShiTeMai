@@ -113,17 +113,14 @@ static NSString *versionKey = @"CFBundleShortVersionString";
          */
         [self.tabBarController.tabBar setHidden:YES];
     }
-    
-    
 }
 
-/**
- 判断用户是否第一次使用 app
- */
+/** 判断用户是否第一次使用 app */
 - (void)userFirstMakeApp {
 
     //从沙盒取出存储的上次软件版本号（上次使用的记录）
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     NSString *lastVersion = [defaults objectForKey:versionKey];
     
     //获取当前使用软件的版本号
@@ -207,9 +204,7 @@ static NSString *versionKey = @"CFBundleShortVersionString";
     [self.guideScrollView removeFromSuperview];
     [self.pageControl removeFromSuperview];
     
-    /**
-     记录当前的版本号
-     */
+    /** 记录当前的版本号     */
     //从沙盒取出存储的上次软件版本号（上次使用的记录）
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
